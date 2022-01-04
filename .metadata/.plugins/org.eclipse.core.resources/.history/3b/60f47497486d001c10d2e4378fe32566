@@ -1,0 +1,23 @@
+package com.revature;
+
+public class Q1 {
+	
+	public void bubbleSort(int[] array) {
+		
+		boolean swapped; // Boolean condition variable to check when the sorting procedure is complete to end the loop
+		int temp = 0; // Temporary storage variable needed to perform swapping procedure
+		
+		do { // Loop should be iterated at least once
+			swapped = false; // At the start of a loop iteration we didn't swap anything yet
+			for (int i=0; i < array.length - 1; i++) {  // for-loop to go through all number pairs of the array; as we look at the neighbour number as well,
+														// we have one less iteration than the length of the array
+				
+				if (array[i] > array[i+1])  	// Compare the current number pair, if the first number is bigger than the second, swap the numbers 
+					temp = array[i]; 
+					array[i] = array[i+1];
+					array[i+1] = temp;
+					swapped = true;
+				}
+		} while (swapped = true); // this loop ends when numbers are no longer swapped, as the array is sorted by now
+	}
+}

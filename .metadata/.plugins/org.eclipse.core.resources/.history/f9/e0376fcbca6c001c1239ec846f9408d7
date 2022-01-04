@@ -1,0 +1,9 @@
+package com.revature.datatypes;
+
+// This class is often called a Bean, JavaBean, POJO (Plain Old Java Object)
+public class Dog {
+	
+	int age;
+	String name, breed; // You can declare/instantiate variables of the same type in a comma delimited list, as shown
+	double weight;
+}

@@ -1,0 +1,29 @@
+package com.revature;
+
+import java.util.Arrays;
+
+public class Driver {
+	
+	public static void main(String[] args) {
+		Q1 q1 = new Q1();
+		Q2 q2 = new Q2();
+		Q3 q3 = new Q3();
+		Q4 q4 = new Q4();
+		Q5 q5 = new Q5();
+		
+		// Q1
+		int[] bubbleArray = {1,0,5,6,3,2,3,7,9,8,4};
+		q1.bubbleSort(bubbleArray);
+		System.out.println(Arrays.toString(bubbleArray));
+		
+		// Q2
+		int[] fibonacciArray = new int[25];
+		fibonacciArray = q2.fibonacci(fibonacciArray.length);
+		System.out.println(Arrays.toString(fibonacciArray));
+		
+		// Q3
+		String reversedString = q3.reverse("Test String");
+		System.out.println(reversedString);
+	}
+	
+}
