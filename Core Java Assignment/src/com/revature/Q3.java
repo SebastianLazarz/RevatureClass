@@ -2,7 +2,7 @@ package com.revature;
 
 public class Q3 {
 	
-	public String reverse(String originalString) {
+	public static String reverse(String originalString) {
 		String reversedString = "";	// Variable for our result
 		char[] stringAsChars = originalString.toCharArray(); // transfering the original string into an array of characters so we can go through them one by one
 		
