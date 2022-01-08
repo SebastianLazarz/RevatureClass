@@ -2,7 +2,7 @@ package com.revature;
 
 public class Q2 {
 	
-	public int[] fibonacci(int length) {
+	public static int[] fibonacci(int length) {
 		int[] result = new int[length];
 		
 		for (int i=0; i < length; i++) {

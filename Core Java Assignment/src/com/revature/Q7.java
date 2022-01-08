@@ -1,7 +1,6 @@
 package com.revature;
 
 public class Q7 {
-	
 	class Employee {
 		String name;
 		String department;
