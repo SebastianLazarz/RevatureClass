@@ -1,6 +1,0 @@
-package com.revature;
-
-public class Q1 {
-	int[] exampleArray = {1,0,5,6,3,2,3,7,9,8,4};
-	
-}
