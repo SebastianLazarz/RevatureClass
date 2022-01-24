@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.BankAccount;
 import com.revature.models.Customer;
 
@@ -78,7 +80,7 @@ public class BankAccountDAO {
 		}
 	}
 	
-	public boolean deleteBankAccount (BankAccount account) {
+	public boolean deleteBankAccount (BankAccount account, Logger logger) {
 		try {
 			Connection c = ConnectionManager.getConnection();
 			CustomerDAO customerDao = new CustomerDAO();
@@ -88,6 +90,7 @@ public class BankAccountDAO {
 				Customer currentCustomer = customerList.get(i);
 				if (currentCustomer.accountNumber == account.accountNumber) {
 					customerDao.deleteCustomer(currentCustomer);
+					logger.info("Deleted customer " + currentCustomer.username);
 				}
 			}
 			

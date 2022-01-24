@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.models.BankAccount;
 import com.revature.models.Customer;
 import com.revature.dao.BankAccountDAO;
@@ -11,6 +14,7 @@ import com.revature.dao.CustomerDAO;
 
 public class Menu {
 	
+	private static final Logger logger = LogManager.getLogger(Menu.class);
 	private Scanner sc;
 	
 	public Menu (Scanner scanner) {
@@ -83,6 +87,7 @@ public class Menu {
 			BankAccount newAccount = bankAccountDao.createBankAccount();
 			customerDao.createCustomer(username, password, newAccount.accountNumber);
 			System.out.println("Congratulations, you successfully registered. Your bank account number is " + newAccount.accountNumber);
+			logger.info("New customer " + username + " created with new account " + newAccount.accountNumber);
 			break;
 		case 2:
 			System.out.println("Please enter the account number of the joint account");
@@ -93,6 +98,7 @@ public class Menu {
 			}
 			customerDao.createCustomer(username,  password, accountNumber);
 			System.out.println("Congratulations, you successfully gained access to your joint account.");
+			logger.info("New customer " + username + " created with joint account " + accountNumber);
 			break;
 		default:
 			// this should never happen
@@ -244,6 +250,7 @@ public class Menu {
 		bankAccountDao.updateBankAccount(bankAccount);
 		
 		System.out.println("You successfully deposited " + amount + "!");
+		logger.info(customer.username + " deposited " + amount);
 		
 		customerMenu(customer);
 	}
@@ -262,6 +269,7 @@ public class Menu {
 		bankAccount.moneyAmount -= amount;
 		bankAccountDao.updateBankAccount(bankAccount);
 		System.out.println("You successfully withdrew " + amount + "!");
+		logger.info(customer.username + " withdrew " + amount);
 		
 		customerMenu(customer);
 	}
@@ -292,6 +300,7 @@ public class Menu {
 		bankAccountDao.updateBankAccount(account1);
 		bankAccountDao.updateBankAccount(account2);
 		System.out.println("You successfully sent " + amount + " to " + account2.accountNumber + "!");
+		logger.info(customer.username + " transfered " + amount + " to " + account2.accountNumber);
 		
 		customerMenu(customer);
 	}
@@ -337,10 +346,12 @@ public class Menu {
 			account.approved = false;
 			bankAccountDao.updateBankAccount(account);
 			System.out.println(account.accountNumber + " is no longer approved.");
+			logger.info(account.accountNumber + " is no longer approved by " + customer.username);
 		} else {
 			account.approved = true;
 			bankAccountDao.updateBankAccount(account);
-			System.out.println(account.accountNumber + " is now approved.");
+			System.out.println(account.accountNumber + " is now approved");
+			logger.info(account.accountNumber + " is now approved by " + customer.username);
 		}
 		
 		customerMenu(customer);
@@ -348,7 +359,6 @@ public class Menu {
 	
 	private void editAccountScreen (Customer customer) {
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
-		CustomerDAO customerDao = new CustomerDAO();
 		System.out.println("What account do you want to edit?");
 		
 		BankAccount account = null;
@@ -377,10 +387,12 @@ public class Menu {
 				account.approved = false;
 				bankAccountDao.updateBankAccount(account);
 				System.out.println(account.accountNumber + " is no longer approved.");
+				logger.info(account.accountNumber + " is no longer approved by " + customer.username);
 			} else {
 				account.approved = true;
 				bankAccountDao.updateBankAccount(account);
 				System.out.println(account.accountNumber + " is now approved.");
+				logger.info(account.accountNumber + " is now approved by " + customer.username);
 			}
 			adminMenu(customer);
 			break;
@@ -396,6 +408,7 @@ public class Menu {
 			account.moneyAmount -= withdrawalAmount;
 			bankAccountDao.updateBankAccount(account);
 			System.out.println("You successfully withdrew " + withdrawalAmount + "!");
+			logger.info("Admin " + customer.username + " withdrew " + withdrawalAmount + " from " + account.accountNumber);
 			adminMenu(customer);
 			break;
 			
@@ -405,6 +418,7 @@ public class Menu {
 			account.moneyAmount += depositAmount;
 			bankAccountDao.updateBankAccount(account);
 			System.out.println("You successfully deposited " + depositAmount + "!");
+			logger.info("Admin " + customer.username + " deposited " + depositAmount + " into " + account.accountNumber);
 			adminMenu(customer);
 			break;
 			
@@ -431,11 +445,13 @@ public class Menu {
 			bankAccountDao.updateBankAccount(account);
 			bankAccountDao.updateBankAccount(account2);
 			System.out.println("You successfully sent " + amount + " from " + account.accountNumber + " to " + account2.accountNumber + "!");
+			logger.info("Admin " + customer.username + " transfered " + amount + " from " + account.accountNumber + " to " + account2.accountNumber);
 			adminMenu(customer);
 			break;
 		case 5:
-			bankAccountDao.deleteBankAccount(account);
+			bankAccountDao.deleteBankAccount(account, logger);
 			System.out.println("Account was cancelled!");
+			logger.info("Admin " + customer.username + " deleted account " + account.accountNumber + "; deleted all customers associated with this account");
 			adminMenu(customer);
 			break;
 		case 6:

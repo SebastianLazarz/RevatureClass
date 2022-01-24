@@ -30,23 +30,7 @@ public class CustomerDAO {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
-	/*
-	public void addAccountNumber (Customer customer) {
-		try {
-			Connection c = ConnectionManager.getConnection();
-			PreparedStatement prepStatement = c.prepareStatement("UPDATE Customer SET acccount_number = ? WHERE username = ?;");
-			prepStatement.setLong(1, customer.accountNumber);
-			prepStatement.setString(2, customer.username);
-			
-			prepStatement.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
 	
 	public boolean usernameExists (String username) {
 		try {
