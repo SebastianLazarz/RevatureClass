@@ -147,9 +147,8 @@ public class Menu {
 				break;
 			}
 		} else {
-			
 			System.out.println("Your bank account is not approved yet. Please talk to a bank employee if you have any questions regarding the approval process.");
-			// end of program here
+			entryScreen();
 		}
 	}
 	
@@ -310,9 +309,9 @@ public class Menu {
 		} else {
 			for (int i=0; i < customers.size(); i++) {
 				Customer currentCustomer = customers.get(i);
-				BankAccount currentAccount = bankAccountDao.getBankAccount(customer.accountNumber);
+				BankAccount currentAccount = bankAccountDao.getBankAccount(currentCustomer.accountNumber);
 				
-				System.out.println(i + ": Username: " + currentCustomer.username + ", Password: " + currentCustomer.password + ", Account Number: " +customer.accountNumber);
+				System.out.println(i + ": Username: " + currentCustomer.username + ", Password: " + currentCustomer.password + ", Account Number: " +currentCustomer.accountNumber + ", Role: " + currentCustomer.role);
 				System.out.println("Money deposited: " + currentAccount.moneyAmount + ", Approval Status: " + currentAccount.approved);
 			}
 		}
@@ -341,7 +340,7 @@ public class Menu {
 		} else {
 			account.approved = true;
 			bankAccountDao.updateBankAccount(account);
-			System.out.println(account.accountNumber + "is now approved.");
+			System.out.println(account.accountNumber + " is now approved.");
 		}
 		
 		customerMenu(customer);
@@ -381,8 +380,9 @@ public class Menu {
 			} else {
 				account.approved = true;
 				bankAccountDao.updateBankAccount(account);
-				System.out.println(account.accountNumber + "is now approved.");
+				System.out.println(account.accountNumber + " is now approved.");
 			}
+			adminMenu(customer);
 			break;
 			
 		case 2:
@@ -396,6 +396,7 @@ public class Menu {
 			account.moneyAmount -= withdrawalAmount;
 			bankAccountDao.updateBankAccount(account);
 			System.out.println("You successfully withdrew " + withdrawalAmount + "!");
+			adminMenu(customer);
 			break;
 			
 		case 3:
@@ -404,9 +405,11 @@ public class Menu {
 			account.moneyAmount += depositAmount;
 			bankAccountDao.updateBankAccount(account);
 			System.out.println("You successfully deposited " + depositAmount + "!");
+			adminMenu(customer);
 			break;
 			
 		case 4:
+			System.out.println("To what account do you want to transfer money?");
 			BankAccount account2 = null;
 			
 			while (account2 == null) {
@@ -428,10 +431,12 @@ public class Menu {
 			bankAccountDao.updateBankAccount(account);
 			bankAccountDao.updateBankAccount(account2);
 			System.out.println("You successfully sent " + amount + " from " + account.accountNumber + " to " + account2.accountNumber + "!");
+			adminMenu(customer);
 			break;
 		case 5:
 			bankAccountDao.deleteBankAccount(account);
 			System.out.println("Account was cancelled!");
+			adminMenu(customer);
 			break;
 		case 6:
 			adminMenu(customer);

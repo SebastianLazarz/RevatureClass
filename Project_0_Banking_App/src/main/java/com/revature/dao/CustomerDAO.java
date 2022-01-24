@@ -17,7 +17,7 @@ public class CustomerDAO {
 			PreparedStatement prepStatement = c.prepareStatement("INSERT INTO Customer VALUES (?, ?, ?, ?)");
 			prepStatement.setString(1, username);
 			prepStatement.setString(2, password);
-			prepStatement.setLong(3, 0);
+			prepStatement.setLong(3, accountNumber);
 			prepStatement.setString(4, "Customer");
 			
 			prepStatement.executeUpdate();
@@ -32,7 +32,7 @@ public class CustomerDAO {
 		}
 		
 	}
-	
+	/*
 	public void addAccountNumber (Customer customer) {
 		try {
 			Connection c = ConnectionManager.getConnection();
@@ -46,6 +46,7 @@ public class CustomerDAO {
 			e.printStackTrace();
 		}
 	}
+	*/
 	
 	public boolean usernameExists (String username) {
 		try {
@@ -54,7 +55,7 @@ public class CustomerDAO {
 			prepStatement.setString(1, username);
 			ResultSet results = prepStatement.executeQuery();
 			
-			if (results.first() == false) {
+			if (results.next() == false) {
 				return false;
 			} else {
 				return true;
@@ -77,10 +78,7 @@ public class CustomerDAO {
 			prepStatement.setString(1, username);
 			ResultSet results = prepStatement.executeQuery();
 			
-			if (results.first() == false) {
-				return null;
-			} else {
-				
+			while(results.next()) {
 				long accountNumber = results.getLong("account_number");
 				String password = results.getString("password");
 				String role = results.getString("role");
@@ -99,22 +97,18 @@ public class CustomerDAO {
 	public ArrayList<Customer> getAllCustomers () {
 		try {
 			Connection c = ConnectionManager.getConnection();
-			PreparedStatement prepStatement = c.prepareStatement("SELECT * FROM Customer");
+			PreparedStatement prepStatement = c.prepareStatement("SELECT * FROM Customer ORDER BY account_number ASC");
 			ResultSet results = prepStatement.executeQuery();
 			
 			ArrayList<Customer> customers = new ArrayList<Customer>();
 			
-			if (results.first() == false) {
-				return null;
-			} else {
-				do {
-					String username = results.getString("username");
-					long accountNumber = results.getLong("account_number");
-					String password = results.getString("password");
-					String role = results.getString("role");
-					Customer customer = new Customer(username, password, accountNumber, role);
-					customers.add(customer);
-				} while (results.next() == true);
+			while(results.next()) {
+				String username = results.getString("username");
+				long accountNumber = results.getLong("account_number");
+				String password = results.getString("password");
+				String role = results.getString("role");
+				Customer customer = new Customer(username, password, accountNumber, role);
+				customers.add(customer);
 			}
 			
 			return customers;
@@ -125,5 +119,22 @@ public class CustomerDAO {
 		}
 		
 		return null;
+	}
+	
+	public boolean deleteCustomer (Customer customer) {
+		try {
+			Connection c = ConnectionManager.getConnection();
+			
+			PreparedStatement prepStatement = c.prepareStatement("DELETE FROM Customer WHERE username = ?");
+			prepStatement.setString(1, customer.username);
+			prepStatement.executeUpdate();
+			
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 }
