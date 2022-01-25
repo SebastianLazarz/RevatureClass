@@ -62,6 +62,7 @@ public class Tests {
 		assertEquals(account.accountNumber, accountGet.accountNumber);
 		assertEquals(account.approved, accountGet.approved);
 		assertEquals(account.moneyAmount, accountGet.moneyAmount);
+		bankAccountDao.deleteBankAccount(account, logger);
 	}
 	
 	@Test
@@ -144,6 +145,7 @@ public class Tests {
 			assertNotNull(customerGet);
 			assertEquals(username, customerGet.username);
 			assertEquals(password, customerGet.password);
+			bankAccountDao.deleteBankAccount(account, logger);
 		}
 	}
 	

@@ -107,7 +107,7 @@ public class BankAccountDAO {
 		}
 	}
 	
-	private long generateAccountNumber () {
+	public long generateAccountNumber () {
 		try {
 			Connection c = ConnectionManager.getConnection();
 			PreparedStatement prepStatement = c.prepareStatement("SELECT MAX(account_number) AS number FROM account");
