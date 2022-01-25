@@ -13,6 +13,7 @@ import com.revature.models.Customer;
 
 public class BankAccountDAO {
 	
+	// creates a fresh bank account with default values, generating an account number with generateAccountNumber()
 	public BankAccount createBankAccount() {
 		
 		try {
@@ -37,6 +38,7 @@ public class BankAccountDAO {
 		
 	}
 	
+	// gets a bank account using an existing account number; if it doesnt exist, returns null
 	public BankAccount getBankAccount (long accountNumber) {
 		
 		
@@ -61,6 +63,7 @@ public class BankAccountDAO {
 		return null;
 	}
 	
+	// updates a bank account, assuming is account number exists; otherwise returns null
 	public boolean updateBankAccount (BankAccount account) {
 		
 		try {
@@ -80,6 +83,7 @@ public class BankAccountDAO {
 		}
 	}
 	
+	// deletes a bank account assuming it exists; it also deletes all related customers in the database; if an error occurs, returns false, otherwise true
 	public boolean deleteBankAccount (BankAccount account, Logger logger) {
 		try {
 			Connection c = ConnectionManager.getConnection();
@@ -107,6 +111,7 @@ public class BankAccountDAO {
 		}
 	}
 	
+	// generates an account number based on the highest existing account number by incrementing by 1; if no account exists, returns 100000001 as default starting number 
 	public long generateAccountNumber () {
 		try {
 			Connection c = ConnectionManager.getConnection();

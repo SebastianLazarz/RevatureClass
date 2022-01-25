@@ -33,17 +33,21 @@ public class CustomerController {
 		app.delete("/users/{username}", deleteCustomer);
 		
 	}
-		
+	
+	
+	// gets a customer by its username
 	public Handler getCustomer = ctx -> {
 		Customer customer = customerDao.getCustomer(ctx.pathParam("username"));
 		ctx.json(customer);
 	};
 	
+	// gets all customers as an arraylist
 	public Handler getAllCustomers = ctx -> {
 		ArrayList<Customer> customers = customerDao.getAllCustomers();
 		ctx.json(customers);
 	};
 		
+	// creates a regular customer (role "Customer") using the information provided, assuming that there is no conflict with our database
 	public Handler createCustomer = ctx -> {
 		Customer customer = ctx.bodyAsClass(Customer.class);
 		
@@ -56,6 +60,7 @@ public class CustomerController {
 		}
 	};
 	
+	// deletes a customer assuming the customer username exists
 	public Handler deleteCustomer = ctx -> {
 		Customer customer = ctx.bodyAsClass(Customer.class);
 		if (customerDao.usernameExists(customer.username)) {

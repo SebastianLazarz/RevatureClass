@@ -15,7 +15,7 @@ public class Driver {
 	
 	public static void main (String[] args) {
 		try {
-			
+			// initializes our Javalin and console interfaces
 			Javalin app = Javalin.create().start(7070);
 			Connection connection = ConnectionManager.getConnection();
 			CustomerController customerController = new CustomerController(app, connection);

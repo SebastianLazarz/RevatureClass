@@ -30,6 +30,7 @@ public class BankAccountController {
 		
 	}
 	
+	// gets a bank account using its account number
 	public Handler getBankAccount = ctx -> {
 		try {
 			long accountNumber = Long.parseLong(ctx.pathParam("accountNumber"));
@@ -41,6 +42,7 @@ public class BankAccountController {
 		}
 	};
 	
+	// creates a fresh bank account with default values
 	public Handler createBankAccount = ctx -> {
 		BankAccount account = bankAccountDao.createBankAccount();
 		logger.info("Bank Account " + account.accountNumber + " was created");
@@ -48,6 +50,7 @@ public class BankAccountController {
 		ctx.status(201);
 	};
 	
+	// updates a bank account
 	public Handler updateBankAccount = ctx -> {
 		BankAccount account = ctx.bodyAsClass(BankAccount.class);
 		if (bankAccountDao.getBankAccount(account.accountNumber) != null) {
@@ -59,6 +62,7 @@ public class BankAccountController {
 		}
 	};
 	
+	// deletes a bank account and all related customers
 	public Handler deleteBankAccount = ctx -> {
 		try {
 			long accountNumber = Long.parseLong(ctx.pathParam("accountNumber"));

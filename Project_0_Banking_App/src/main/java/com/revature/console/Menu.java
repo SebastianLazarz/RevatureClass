@@ -21,6 +21,7 @@ public class Menu {
 		sc = scanner;
 	}
 	
+	// shows the entry screen of our console program
 	public void entryScreen () {
 		System.out.println("Welcome to my banking app! To navigate this menu, please enter the integer number next to each option listed below.");
 		System.out.println("(1) Login");
@@ -41,6 +42,7 @@ public class Menu {
 		}
 	}
 	
+	// shows the login screen
 	private void loginScreen () {
 		Customer customer = null;
 		CustomerDAO customerDao = new CustomerDAO();
@@ -62,6 +64,7 @@ public class Menu {
 		customerMenu(customer);		
 	}
 	
+	// shows the registration screen
 	private void registerScreen () {
 		System.out.println("Please enter your desired username.");
 		String username = sc.next();
@@ -110,6 +113,7 @@ public class Menu {
 
 	}
 	
+	// shows the main menu for regular customers after login
 	private void customerMenu (Customer customer) {
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
 		BankAccount bankAccount = bankAccountDao.getBankAccount(customer.accountNumber);
@@ -158,6 +162,7 @@ public class Menu {
 		}
 	}
 	
+	// shows the main menu for bank employees after login
 	private void employeeMenu (Customer customer) {
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
 		BankAccount bankAccount = bankAccountDao.getBankAccount(customer.accountNumber);
@@ -199,6 +204,7 @@ public class Menu {
 		}
 	}
 	
+	// shows the main menu for bank admins after login
 	private void adminMenu (Customer customer) {
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
 		BankAccount bankAccount = bankAccountDao.getBankAccount(customer.accountNumber);
@@ -240,6 +246,7 @@ public class Menu {
 		}
 	}
 	
+	// shows the screen to deposit money into the customers account
 	private void depositScreen (Customer customer) {
 		System.out.println("How much do you want to deposit? Write as double value.");
 		double amount = getMoneyInput();
@@ -255,6 +262,7 @@ public class Menu {
 		customerMenu(customer);
 	}
 	
+	// shows the screen to withdraw money from the customers account
 	private void withdrawScreen (Customer customer) {		
 		System.out.println("How much do you want to withdraw? Write as double value > 0.");
 		double amount = getMoneyInput();
@@ -274,6 +282,7 @@ public class Menu {
 		customerMenu(customer);
 	}
 	
+	// shows the screen to transfer money from the customers account to another
 	private void transferScreen (Customer customer) {
 		System.out.println("Please enter the bank account number of the account you want to send money to.");
 		
@@ -305,6 +314,7 @@ public class Menu {
 		customerMenu(customer);
 	}
 	
+	// lists all customer information to bank employees and admins, then returns to customerMenu
 	private void viewCustomerScreen (Customer customer) {
 		CustomerDAO customerDao = new CustomerDAO();
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
@@ -328,6 +338,7 @@ public class Menu {
 		customerMenu(customer);
 	}
 	
+	// shows the screen for bank employees to change the approval status of a bank account
 	private void approvalScreen (Customer customer) {
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
 		System.out.println("For what account number do you want to change the approval status?");
@@ -357,6 +368,8 @@ public class Menu {
 		customerMenu(customer);
 	}
 	
+	
+	// offers all the bank account manipulation options for bank admins
 	private void editAccountScreen (Customer customer) {
 		BankAccountDAO bankAccountDao = new BankAccountDAO();
 		System.out.println("What account do you want to edit?");
@@ -463,6 +476,7 @@ public class Menu {
 		}		
 	}
 	
+	// checks if the user inputs a valid option in our menus
 	private int getOptionInput (HashSet<Integer> optionSet) {
 		int option = 0;
 		do {
@@ -479,6 +493,7 @@ public class Menu {
 		return option;
 	}
 	
+	// helper method to create a HashSet consisting of all number from 1 to n (for each menu, to check valid user integer inputs in getOptionInput)
 	private HashSet<Integer> generateOptionSet (int n) {
 		HashSet<Integer> optionSet = new HashSet<Integer>();
 		
@@ -489,6 +504,7 @@ public class Menu {
 		return optionSet;
 	}
 	
+	// helper method to get the user to input a valid positive double value (for money amount)
 	private double getMoneyInput () {
 		double money = 0;
 		do {
@@ -504,6 +520,7 @@ public class Menu {
 		return money;
 	}
 	
+	// helper method to get the user to input a long number (for account numbers)
 	private long getLongInput () {
 		while (!sc.hasNextLong()) {
 			System.out.println("Invalid input! Try again.");

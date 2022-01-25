@@ -10,6 +10,7 @@ import com.revature.models.Customer;
 
 public class CustomerDAO {
 	
+	// creates a fresh regular customer, using the information provided and assigns the role "Customer" as default
 	public Customer createCustomer(String username, String password, long accountNumber) {
 		
 		try {
@@ -32,6 +33,7 @@ public class CustomerDAO {
 		}
 	}
 	
+	// checks if a customer username already exists in the database
 	public boolean usernameExists (String username) {
 		try {
 			Connection c = ConnectionManager.getConnection();
@@ -52,7 +54,7 @@ public class CustomerDAO {
 		return true;
 	}
 	
-	
+	// gets a customer by its username; if it doesnt exist, returns null
 	public Customer getCustomer (String username) {
 		
 		
@@ -78,6 +80,7 @@ public class CustomerDAO {
 		return null;
 	}
 	
+	// gets all customers as an arraylist; if there are no customers, returns null
 	public ArrayList<Customer> getAllCustomers () {
 		try {
 			Connection c = ConnectionManager.getConnection();
@@ -105,6 +108,7 @@ public class CustomerDAO {
 		return null;
 	}
 	
+	// deletes a customer from the database; if there is an error, returns false, otherwise true
 	public boolean deleteCustomer (Customer customer) {
 		try {
 			Connection c = ConnectionManager.getConnection();
