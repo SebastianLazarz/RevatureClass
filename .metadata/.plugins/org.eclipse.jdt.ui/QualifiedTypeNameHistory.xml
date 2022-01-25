@@ -44,7 +44,6 @@
     <fullyQualifiedTypeName name="com.revature.dao.CustomerDAO"/>
     <fullyQualifiedTypeName name="org.eclipse.jetty.io.Connection"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="com.revature.models.Customer"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.revature.dao.BankAccountDAO"/>
     <fullyQualifiedTypeName name="com.revature.models.BankAccount"/>
@@ -52,4 +51,5 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.revature.controller.AdminController"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="com.revature.models.Customer"/>
 </qualifiedTypeNameHistroy>

@@ -6257,3 +6257,15 @@ org.eclipse.core.runtime.CoreException: Launch configuration Driver (5) referenc
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 !SUBENTRY 1 org.eclipse.jdt.launching 4 107 2022-01-25 17:46:52.770
 !MESSAGE Launch configuration Driver (5) references non-existing project Project_0_Banking_App_Experimental.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-25 18:04:11.431
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.gtLokqmK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-25 18:04:11.431
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.gtLokqmK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-25 18:04:11.431
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-01-25 18:04:11.431
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.gtLokqmK => OK

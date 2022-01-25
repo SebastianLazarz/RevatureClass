@@ -1,2 +1,9 @@
 2022-01-25 17:37:21.865 [JettyServerThreadPool-16] INFO  com.revature.controller.BankAccountController - Bank Account 100000009 was created
 2022-01-25 17:37:58.818 [JettyServerThreadPool-23] INFO  com.revature.controller.BankAccountController - Deleted Bank Account 100000009
+2022-01-25 17:59:57.794 [main] INFO  com.revature.console.Menu - New customer torsten created with new account 100000009
+2022-01-25 18:01:06.906 [main] INFO  com.revature.console.Menu - 100000009 is now approved by admin01
+2022-01-25 18:01:21.179 [main] INFO  com.revature.console.Menu - torsten deposited 10000.0
+2022-01-25 18:01:34.510 [main] INFO  com.revature.console.Menu - torsten transfered 2000.0 to 100000005
+2022-01-25 18:02:41.152 [main] INFO  com.revature.console.Menu - Deleted customer torsten
+2022-01-25 18:02:41.200 [main] INFO  com.revature.console.Menu - Admin admin01 deleted account 100000009; deleted all customers associated with this account
+2022-01-25 18:03:53.758 [main] INFO  com.revature.console.Menu - Admin admin01 withdrew 100.0 from 100000001
