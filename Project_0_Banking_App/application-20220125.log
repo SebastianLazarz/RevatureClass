@@ -1,0 +1,2 @@
+2022-01-25 17:37:21.865 [JettyServerThreadPool-16] INFO  com.revature.controller.BankAccountController - Bank Account 100000009 was created
+2022-01-25 17:37:58.818 [JettyServerThreadPool-23] INFO  com.revature.controller.BankAccountController - Deleted Bank Account 100000009

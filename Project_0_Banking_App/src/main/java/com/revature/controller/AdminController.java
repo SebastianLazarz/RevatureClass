@@ -47,7 +47,7 @@ public class AdminController {
 	// shows the number of bank accounts in the database
 	public Handler getBankAccountCount = ctx -> {
 		try {
-			PreparedStatement prepStatement = connection.prepareStatement("SELECT COUNT(*) AS number FROM BankAccount");
+			PreparedStatement prepStatement = connection.prepareStatement("SELECT COUNT(*) AS number FROM account");
 			ResultSet results = prepStatement.executeQuery();
 			String number = "0";
 			
@@ -67,7 +67,7 @@ public class AdminController {
 	// shows the highest bank account number
 	public Handler getHighestAccountNumber = ctx -> {
 		try {
-			PreparedStatement prepStatement = connection.prepareStatement("SELECT MAX(account_number) AS number FROM BankAccount");
+			PreparedStatement prepStatement = connection.prepareStatement("SELECT MAX(account_number) AS number FROM account");
 			ResultSet results = prepStatement.executeQuery();
 			String number = "0";
 			
@@ -85,7 +85,7 @@ public class AdminController {
 	// shows the account with the highest money count
 	public Handler getHighestMoneyAccount = ctx -> {
 		try {
-			PreparedStatement prepStatement = connection.prepareStatement("SELECT * FROM BankAccount ORDER BY money_amount DESC");
+			PreparedStatement prepStatement = connection.prepareStatement("SELECT * FROM account ORDER BY money_amount DESC");
 			ResultSet results = prepStatement.executeQuery();			
 			BankAccount account = null;
 			
@@ -101,6 +101,7 @@ public class AdminController {
 		}
 	};
 	
+	// updates a customer in the database
 	// useful to for example change the role of a customer to employee or admin, for which there is no way in the console program
 	public Handler updateCustomer = ctx -> {
 		try {

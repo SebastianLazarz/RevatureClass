@@ -24,8 +24,8 @@ public class BankAccountController {
 		this.bankAccountDao = new BankAccountDAO();
 		
 		app.get("/accounts/{accountNumber}", getBankAccount);
-		app.post("/accounts/", createBankAccount);
-		app.put("/accounts/", updateBankAccount);
+		app.post("/accounts", createBankAccount);
+		app.put("/accounts", updateBankAccount);
 		app.delete("/accounts/{accountNumber}", deleteBankAccount);
 		
 	}

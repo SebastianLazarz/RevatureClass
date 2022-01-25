@@ -2,7 +2,6 @@ package com.revature.models;
 
 public class BankAccount {
 	
-	
 	public long accountNumber;
 	public double moneyAmount;
 	public boolean approved;
